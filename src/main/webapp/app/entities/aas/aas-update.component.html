@@ -1,0 +1,211 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-aas-heading">Create or edit a Aas</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!aas.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="aas.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_aaname">Aaname</label>
+                    <input type="text" class="form-control" name="aaname" id="field_aaname"
+                        [(ngModel)]="aas.aaname" required minlength="3"/>
+                    <div [hidden]="!(editForm.controls.aaname?.dirty && editForm.controls.aaname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.aaname?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.aaname?.errors?.minlength">
+                        This field is required to be at least 3 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_threeletter">Threeletter</label>
+                    <input type="text" class="form-control" name="threeletter" id="field_threeletter"
+                        [(ngModel)]="aas.threeletter" required/>
+                    <div [hidden]="!(editForm.controls.threeletter?.dirty && editForm.controls.threeletter?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.threeletter?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mwwithprotection">Mwwithprotection</label>
+                    <input type="number" class="form-control" name="mwwithprotection" id="field_mwwithprotection"
+                        [(ngModel)]="aas.mwwithprotection" required/>
+                    <div [hidden]="!(editForm.controls.mwwithprotection?.dirty && editForm.controls.mwwithprotection?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mwwithprotection?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.mwwithprotection?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mwwithoutprotection">Mwwithoutprotection</label>
+                    <input type="number" class="form-control" name="mwwithoutprotection" id="field_mwwithoutprotection"
+                        [(ngModel)]="aas.mwwithoutprotection" required/>
+                    <div [hidden]="!(editForm.controls.mwwithoutprotection?.dirty && editForm.controls.mwwithoutprotection?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mwwithoutprotection?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.mwwithoutprotection?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pi">Pi</label>
+                    <input type="number" class="form-control" name="pi" id="field_pi"
+                        [(ngModel)]="aas.pi" required/>
+                    <div [hidden]="!(editForm.controls.pi?.dirty && editForm.controls.pi?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pi?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.pi?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_unitprice">Unitprice</label>
+                    <input type="number" class="form-control" name="unitprice" id="field_unitprice"
+                        [(ngModel)]="aas.unitprice" required/>
+                    <div [hidden]="!(editForm.controls.unitprice?.dirty && editForm.controls.unitprice?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.unitprice?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.unitprice?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_difficulty">Difficulty</label>
+                    <input type="number" class="form-control" name="difficulty" id="field_difficulty"
+                        [(ngModel)]="aas.difficulty" required/>
+                    <div [hidden]="!(editForm.controls.difficulty?.dirty && editForm.controls.difficulty?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.difficulty?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.difficulty?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numc">Numc</label>
+                    <input type="number" class="form-control" name="numc" id="field_numc"
+                        [(ngModel)]="aas.numc" required/>
+                    <div [hidden]="!(editForm.controls.numc?.dirty && editForm.controls.numc?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.numc?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.numc?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numh">Numh</label>
+                    <input type="number" class="form-control" name="numh" id="field_numh"
+                        [(ngModel)]="aas.numh" required/>
+                    <div [hidden]="!(editForm.controls.numh?.dirty && editForm.controls.numh?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.numh?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.numh?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numn">Numn</label>
+                    <input type="number" class="form-control" name="numn" id="field_numn"
+                        [(ngModel)]="aas.numn" required/>
+                    <div [hidden]="!(editForm.controls.numn?.dirty && editForm.controls.numn?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.numn?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.numn?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numo">Numo</label>
+                    <input type="number" class="form-control" name="numo" id="field_numo"
+                        [(ngModel)]="aas.numo" required/>
+                    <div [hidden]="!(editForm.controls.numo?.dirty && editForm.controls.numo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.numo?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.numo?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nums">Nums</label>
+                    <input type="number" class="form-control" name="nums" id="field_nums"
+                        [(ngModel)]="aas.nums" required/>
+                    <div [hidden]="!(editForm.controls.nums?.dirty && editForm.controls.nums?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nums?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.nums?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_solubility">Solubility</label>
+                    <input type="text" class="form-control" name="solubility" id="field_solubility"
+                        [(ngModel)]="aas.solubility" required/>
+                    <div [hidden]="!(editForm.controls.solubility?.dirty && editForm.controls.solubility?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.solubility?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

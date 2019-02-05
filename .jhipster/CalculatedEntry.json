@@ -1,0 +1,82 @@
+{
+    "name": "CalculatedEntry",
+    "fields": [
+        {
+            "fieldName": "sequencenumber",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "aa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sc",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dc",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "scale",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mwwithprotection",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "mwwithoutprotection",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "eachaaweight",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "difficulty",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "currentresinweight",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "protocolname",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "calculated",
+            "otherEntityName": "calculated",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "calculatedEntry"
+        }
+    ],
+    "changelogDate": "20190204174823",
+    "entityTableName": "calculated_entry",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

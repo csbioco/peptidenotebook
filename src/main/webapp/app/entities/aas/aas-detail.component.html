@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="aas">
+            <h2><span>Aas</span> {{aas.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Aaname</span></dt>
+                <dd>
+                    <span>{{aas.aaname}}</span>
+                </dd>
+                <dt><span>Threeletter</span></dt>
+                <dd>
+                    <span>{{aas.threeletter}}</span>
+                </dd>
+                <dt><span>Mwwithprotection</span></dt>
+                <dd>
+                    <span>{{aas.mwwithprotection}}</span>
+                </dd>
+                <dt><span>Mwwithoutprotection</span></dt>
+                <dd>
+                    <span>{{aas.mwwithoutprotection}}</span>
+                </dd>
+                <dt><span>Pi</span></dt>
+                <dd>
+                    <span>{{aas.pi}}</span>
+                </dd>
+                <dt><span>Unitprice</span></dt>
+                <dd>
+                    <span>{{aas.unitprice}}</span>
+                </dd>
+                <dt><span>Difficulty</span></dt>
+                <dd>
+                    <span>{{aas.difficulty}}</span>
+                </dd>
+                <dt><span>Numc</span></dt>
+                <dd>
+                    <span>{{aas.numc}}</span>
+                </dd>
+                <dt><span>Numh</span></dt>
+                <dd>
+                    <span>{{aas.numh}}</span>
+                </dd>
+                <dt><span>Numn</span></dt>
+                <dd>
+                    <span>{{aas.numn}}</span>
+                </dd>
+                <dt><span>Numo</span></dt>
+                <dd>
+                    <span>{{aas.numo}}</span>
+                </dd>
+                <dt><span>Nums</span></dt>
+                <dd>
+                    <span>{{aas.nums}}</span>
+                </dd>
+                <dt><span>Solubility</span></dt>
+                <dd>
+                    <span>{{aas.solubility}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/aas', aas.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

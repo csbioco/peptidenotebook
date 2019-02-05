@@ -1,0 +1,136 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-calculated-heading">Create or edit a Calculated</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!calculated.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="calculated.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sequence">Sequence</label>
+                    <textarea style="height:200px;" type="text" class="form-control" name="sequence" id="field_sequence"
+                        [(ngModel)]="calculated.sequence" required maxlength="65535"></textarea>
+                    <div [hidden]="!(editForm.controls.sequence?.dirty && editForm.controls.sequence?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sequence?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sequence?.errors?.maxlength">
+                        This field cannot be longer than 65535 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sc">Sc</label>
+                    <input type="number" class="form-control" name="sc" id="field_sc"
+                        [(ngModel)]="calculated.sc" required/>
+                    <div [hidden]="!(editForm.controls.sc?.dirty && editForm.controls.sc?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sc?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.sc?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dc">Dc</label>
+                    <input type="number" class="form-control" name="dc" id="field_dc"
+                        [(ngModel)]="calculated.dc" required/>
+                    <div [hidden]="!(editForm.controls.dc?.dirty && editForm.controls.dc?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dc?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dc?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_scale">Scale</label>
+                    <input type="number" class="form-control" name="scale" id="field_scale"
+                        [(ngModel)]="calculated.scale" required/>
+                    <div [hidden]="!(editForm.controls.scale?.dirty && editForm.controls.scale?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.scale?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.scale?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_bound">Bound(0 mean linear)</label>
+                    <input type="number" class="form-control" name="sc" id="field_sc"
+                        [(ngModel)]="calculated.bound" required/>
+                    <div [hidden]="!(editForm.controls.bound?.dirty && editForm.controls.bound?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.bound?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.bound?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- protocols -->
+                <div class="form-group">
+                        <label class="form-control-label" for="field_protocol">Protocol</label>
+                        <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="calculated.protocolname" >
+                            <option [ngValue]="protocolOption.id" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
+                        </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label class="form-control-label" for="field_bound">Protocol</label>
+                    <input type="String" class="form-control" name="sc" id="field_sc"
+                        [(ngModel)]="calculated.protocolname" required/>
+                    <div [hidden]="!(editForm.controls.protocolname?.dirty && editForm.controls.protocolname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.protocolname?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.bound?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="form-control-label" for="field_startresin">Startresin</label>
+                    <input type="number" class="form-control" name="startresin" id="field_startresin"
+                        [(ngModel)]="calculated.startresin" />
+                </div>               
+                <div class="form-group">
+                    <label class="form-control-label" for="field_resinunitprice">Resinunitprice</label>
+                    <input type="number" class="form-control" name="resinunitprice" id="field_resinunitprice"
+                        [(ngModel)]="calculated.resinunitprice" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_substitude">Substitude</label>
+                    <input type="number" class="form-control" name="substitude" id="field_substitude"
+                        [(ngModel)]="calculated.substitude" />
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Calculate</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

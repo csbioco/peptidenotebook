@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="calculated">
+            <h2><span>Calculated</span> {{calculated.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Sequence</span></dt>
+                <dd>
+                    <span>{{calculated.sequence}}</span>
+                </dd>
+                <dt><span>Sc</span></dt>
+                <dd>
+                    <span>{{calculated.sc}}</span>
+                </dd>
+                <dt><span>Dc</span></dt>
+                <dd>
+                    <span>{{calculated.dc}}</span>
+                </dd>
+                <dt><span>Scale</span></dt>
+                <dd>
+                    <span>{{calculated.scale}}</span>
+                </dd>
+                <dt><span>Pi</span></dt>
+                <dd>
+                    <span>{{calculated.pi}}</span>
+                </dd>
+                <dt><span>Netcharge</span></dt>
+                <dd>
+                    <span>{{calculated.netcharge}}</span>
+                </dd>
+                <dt><span>Solubility</span></dt>
+                <dd>
+                    <span>{{calculated.solubility}}</span>
+                </dd>
+                <dt><span>Numc</span></dt>
+                <dd>
+                    <span>{{calculated.numc}}</span>
+                </dd>
+                <dt><span>Numh</span></dt>
+                <dd>
+                    <span>{{calculated.numh}}</span>
+                </dd>
+                <dt><span>Numn</span></dt>
+                <dd>
+                    <span>{{calculated.numn}}</span>
+                </dd>
+                <dt><span>Numo</span></dt>
+                <dd>
+                    <span>{{calculated.numo}}</span>
+                </dd>
+                <dt><span>Nums</span></dt>
+                <dd>
+                    <span>{{calculated.nums}}</span>
+                </dd>
+                <dt><span>Startresin</span></dt>
+                <dd>
+                    <span>{{calculated.startresin}}</span>
+                </dd>
+                <dt><span>Costresin</span></dt>
+                <dd>
+                    <span>{{calculated.costresin}}</span>
+                </dd>
+                <dt><span>Weightgain</span></dt>
+                <dd>
+                    <span>{{calculated.weightgain}}</span>
+                </dd>
+                <dt><span>Totalweight</span></dt>
+                <dd>
+                    <span>{{calculated.totalweight}}</span>
+                </dd>
+                <dt><span>Costaa</span></dt>
+                <dd>
+                    <span>{{calculated.costaa}}</span>
+                </dd>
+                <dt><span>Sumeachaaweight</span></dt>
+                <dd>
+                    <span>{{calculated.sumeachaaweight}}</span>
+                </dd>
+                <dt><span>Resinunitprice</span></dt>
+                <dd>
+                    <span>{{calculated.resinunitprice}}</span>
+                </dd>
+                <dt><span>Substitude</span></dt>
+                <dd>
+                    <span>{{calculated.substitude}}</span>
+                </dd>
+                <dt><span>Bound</span></dt>
+                <dd>
+                    <span>{{calculated.bound}}</span>
+                </dd>
+                <dt><span>Costwaste</span></dt>
+                <dd>
+                    <span>{{calculated.costwaste}}</span>
+                </dd>
+                <dt><span>Protocolname</span></dt>
+                <dd>
+                    <span>{{calculated.protocolname}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{calculated.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/calculated', calculated.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

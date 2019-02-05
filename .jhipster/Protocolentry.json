@@ -1,0 +1,44 @@
+{
+    "name": "Protocolentry",
+    "fields": [
+        {
+            "fieldName": "ordernumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "protocol",
+            "otherEntityName": "protocol",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "protocolentry"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sensor",
+            "otherEntityName": "sensor",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "protocolentry"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reagent",
+            "otherEntityName": "reagent",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "protocolentry"
+        }
+    ],
+    "changelogDate": "20190204174820",
+    "entityTableName": "protocolentry",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

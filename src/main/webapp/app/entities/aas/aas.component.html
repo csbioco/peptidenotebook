@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span>Aas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-aas" [routerLink]="['/aas/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Aas
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="aas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Aaname</span></th>
+            <th><span>Threeletter</span></th>
+            <th><span>Mwwithprotection</span></th>
+            <th><span>Mwwithoutprotection</span></th>
+            <th><span>Pi</span></th>
+            <th><span>Unitprice</span></th>
+            <th><span>Difficulty</span></th>
+            <th><span>Numc</span></th>
+            <th><span>Numh</span></th>
+            <th><span>Numn</span></th>
+            <th><span>Numo</span></th>
+            <th><span>Nums</span></th>
+            <th><span>Solubility</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let aas of aas ;trackBy: trackId">
+                <td><a [routerLink]="['/aas', aas.id, 'view' ]">{{aas.id}}</a></td>
+                <td>{{aas.aaname}}</td>
+                <td>{{aas.threeletter}}</td>
+                <td>{{aas.mwwithprotection}}</td>
+                <td>{{aas.mwwithoutprotection}}</td>
+                <td>{{aas.pi}}</td>
+                <td>{{aas.unitprice}}</td>
+                <td>{{aas.difficulty}}</td>
+                <td>{{aas.numc}}</td>
+                <td>{{aas.numh}}</td>
+                <td>{{aas.numn}}</td>
+                <td>{{aas.numo}}</td>
+                <td>{{aas.nums}}</td>
+                <td>{{aas.solubility}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/aas', aas.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'aas', { outlets: { popup: aas.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button type="submit"
+[routerLink]="['/', 'aas', { outlets: { popup: 'aasall'} }]"
+replaceUrl="true"
+queryParamsHandling="merge"
+class="btn btn-danger btn-sm">
+<fa-icon [icon]="'times'"></fa-icon>
+<span class="d-none d-md-inline">Remove All</span>
+</button>
+
+<button type="submit"
+[routerLink]="['/', 'aas', { outlets: { popup: 'addaas'} }]"
+replaceUrl="true"
+queryParamsHandling="merge"
+class="btn btn-primary btn-sm">
+<fa-icon [icon]="'plus'"></fa-icon>
+<span class="d-none d-md-inline">Add 20 AA</span>
+</button>

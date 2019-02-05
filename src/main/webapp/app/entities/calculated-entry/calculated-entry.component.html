@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span>Calculated Entries</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-calculated-entry" [routerLink]="['/calculated-entry/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Calculated Entry
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="calculatedEntries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sequencenumber</span></th>
+            <th><span>Aa</span></th>
+            <th><span>Sc</span></th>
+            <th><span>Dc</span></th>
+            <th><span>Scale</span></th>
+            <th><span>Mwwithprotection</span></th>
+            <th><span>Mwwithoutprotection</span></th>
+            <th><span>Eachaaweight</span></th>
+            <th><span>Difficulty</span></th>
+            <th><span>Currentresinweight</span></th>
+            <th><span>Protocolname</span></th>
+            <th><span>Calculated</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let calculatedEntry of calculatedEntries ;trackBy: trackId">
+                <td><a [routerLink]="['/calculated-entry', calculatedEntry.id, 'view' ]">{{calculatedEntry.id}}</a></td>
+                <td>{{calculatedEntry.sequencenumber}}</td>
+                <td>{{calculatedEntry.aa}}</td>
+                <td>{{calculatedEntry.sc}}</td>
+                <td>{{calculatedEntry.dc}}</td>
+                <td>{{calculatedEntry.scale}}</td>
+                <td>{{calculatedEntry.mwwithprotection}}</td>
+                <td>{{calculatedEntry.mwwithoutprotection}}</td>
+                <td>{{calculatedEntry.eachaaweight}}</td>
+                <td>{{calculatedEntry.difficulty}}</td>
+                <td>{{calculatedEntry.currentresinweight}}</td>
+                <td>{{calculatedEntry.protocolname}}</td>
+                <td>
+                    <div *ngIf="calculatedEntry.calculated">
+                        <a [routerLink]="['../calculated', calculatedEntry.calculated?.id, 'view' ]" >{{calculatedEntry.calculated?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/calculated-entry', calculatedEntry.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/calculated-entry', calculatedEntry.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'calculated-entry', { outlets: { popup: calculatedEntry.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

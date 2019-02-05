@@ -1,0 +1,90 @@
+<div>
+    <h2 id="page-heading">
+        <span>Calculateds</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-calculated" [routerLink]="['/calculated/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Calculated
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="calculateds">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Sequence</span></th>
+            <th><span>Sc</span></th>
+            <th><span>Dc</span></th>
+            <th><span>Scale</span></th>
+            <th><span>Pi</span></th>
+            <th><span>Netcharge</span></th>
+            <th><span>Solubility</span></th>
+            <th><span>Numc</span></th>
+            <th><span>Numh</span></th>
+            <th><span>Numn</span></th>
+            <th><span>Numo</span></th>
+            <th><span>Nums</span></th>
+            <th><span>Startresin</span></th>
+            <th><span>Costresin</span></th>
+            <th><span>Weightgain</span></th>
+            <th><span>Totalweight</span></th>
+            <th><span>Costaa</span></th>
+            <th><span>Sumeachaaweight</span></th>
+            <th><span>Resinunitprice</span></th>
+            <th><span>Substitude</span></th>
+            <th><span>Bound</span></th>
+            <th><span>Costwaste</span></th>
+            <th><span>Protocolname</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let calculated of calculateds ;trackBy: trackId">
+                <td>{{calculated.sequence}}</td>
+                <td>{{calculated.sc}}</td>
+                <td>{{calculated.dc}}</td>
+                <td>{{calculated.scale}}</td>
+                <td>{{calculated.pi}}</td>
+                <td>{{calculated.netcharge}}</td>
+                <td>{{calculated.solubility}}</td>
+                <td>{{calculated.numc}}</td>
+                <td>{{calculated.numh}}</td>
+                <td>{{calculated.numn}}</td>
+                <td>{{calculated.numo}}</td>
+                <td>{{calculated.nums}}</td>
+                <td>{{calculated.startresin}}</td>
+                <td>{{calculated.costresin}}</td>
+                <td>{{calculated.weightgain}}</td>
+                <td>{{calculated.totalweight}}</td>
+                <td>{{calculated.costaa}}</td>
+                <td>{{calculated.sumeachaaweight}}</td>
+                <td>{{calculated.resinunitprice}}</td>
+                <td>{{calculated.substitude}}</td>
+                <td>{{calculated.bound}}</td>
+                <td>{{calculated.costwaste}}</td>
+                <td>{{calculated.protocolname}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/calculated', calculated.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'calculated', { outlets: { popup: calculated.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Protocolentry.
+    -->
+    <changeSet id="20190204174820-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="protocol_id"
+                                 baseTableName="protocolentry"
+                                 constraintName="fk_protocolentry_protocol_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="protocol"/>
+
+        <addForeignKeyConstraint baseColumnNames="sensor_id"
+                                 baseTableName="protocolentry"
+                                 constraintName="fk_protocolentry_sensor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sensor"/>
+
+        <addForeignKeyConstraint baseColumnNames="reagent_id"
+                                 baseTableName="protocolentry"
+                                 constraintName="fk_protocolentry_reagent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reagent"/>
+
+    </changeSet>
+</databaseChangeLog>

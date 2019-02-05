@@ -1,0 +1,30 @@
+{
+    "name": "Protocol",
+    "fields": [
+        {
+            "fieldName": "protocolname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "otherEntityRelationshipName": "protocol"
+        }
+    ],
+    "changelogDate": "20190204174821",
+    "entityTableName": "protocol",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

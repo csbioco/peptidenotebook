@@ -1,0 +1,50 @@
+<div>
+    <h2 id="page-heading">
+        <span>Reagents</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-reagent" [routerLink]="['/reagent/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Reagent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="reagents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Reagentname</span></th>
+            <th><span>Unitprice</span></th>
+            <th><span>Wasterunitprice</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reagent of reagents ;trackBy: trackId">
+                <td>{{reagent.reagentname}}</td>
+                <td>{{reagent.unitprice}}</td>
+                <td>{{reagent.wasterunitprice}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/reagent', reagent.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'reagent', { outlets: { popup: reagent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

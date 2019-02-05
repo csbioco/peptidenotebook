@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="calculatedEntry">
+            <h2><span>Calculated Entry</span> {{calculatedEntry.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Sequencenumber</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.sequencenumber}}</span>
+                </dd>
+                <dt><span>Aa</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.aa}}</span>
+                </dd>
+                <dt><span>Sc</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.sc}}</span>
+                </dd>
+                <dt><span>Dc</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.dc}}</span>
+                </dd>
+                <dt><span>Scale</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.scale}}</span>
+                </dd>
+                <dt><span>Mwwithprotection</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.mwwithprotection}}</span>
+                </dd>
+                <dt><span>Mwwithoutprotection</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.mwwithoutprotection}}</span>
+                </dd>
+                <dt><span>Eachaaweight</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.eachaaweight}}</span>
+                </dd>
+                <dt><span>Difficulty</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.difficulty}}</span>
+                </dd>
+                <dt><span>Currentresinweight</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.currentresinweight}}</span>
+                </dd>
+                <dt><span>Protocolname</span></dt>
+                <dd>
+                    <span>{{calculatedEntry.protocolname}}</span>
+                </dd>
+                <dt><span>Calculated</span></dt>
+                <dd>
+                    <div *ngIf="calculatedEntry.calculated">
+                        <a [routerLink]="['/calculated', calculatedEntry.calculated?.id, 'view']">{{calculatedEntry.calculated?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/calculated-entry', calculatedEntry.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

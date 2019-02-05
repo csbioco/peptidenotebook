@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-protocolentry-heading">Create or edit a Protocolentry</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!protocolentry.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="protocolentry.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ordernumber">Ordernumber</label>
+                    <input type="text" class="form-control" name="ordernumber" id="field_ordernumber"
+                        [(ngModel)]="protocolentry.ordernumber" required/>
+                    <div [hidden]="!(editForm.controls.ordernumber?.dirty && editForm.controls.ordernumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ordernumber?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_protocol">Protocol</label>
+                    <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="protocolentry.protocol" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="protocolOption.id === protocolentry.protocol?.id ? protocolentry.protocol : protocolOption" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sensor">Sensor</label>
+                    <select class="form-control" id="field_sensor" name="sensor" [(ngModel)]="protocolentry.sensor" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sensorOption.id === protocolentry.sensor?.id ? protocolentry.sensor : sensorOption" *ngFor="let sensorOption of sensors; trackBy: trackSensorById">{{sensorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reagent">Reagent</label>
+                    <select class="form-control" id="field_reagent" name="reagent" [(ngModel)]="protocolentry.reagent" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reagentOption.id === protocolentry.reagent?.id ? protocolentry.reagent : reagentOption" *ngFor="let reagentOption of reagents; trackBy: trackReagentById">{{reagentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

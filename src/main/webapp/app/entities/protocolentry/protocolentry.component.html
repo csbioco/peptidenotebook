@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Protocolentries</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-protocolentry" [routerLink]="['/protocolentry/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Protocolentry
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="protocolentries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Ordernumber</span></th>
+            <th><span>Protocol</span></th>
+            <th><span>Sensor</span></th>
+            <th><span>Reagent</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let protocolentry of protocolentries ;trackBy: trackId">
+                <td><a [routerLink]="['/protocolentry', protocolentry.id, 'view' ]">{{protocolentry.id}}</a></td>
+                <td>{{protocolentry.ordernumber}}</td>
+                <td>
+                    <div *ngIf="protocolentry.protocol">
+                        <a [routerLink]="['../protocol', protocolentry.protocol?.id, 'view' ]" >{{protocolentry.protocol?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolentry.sensor">
+                        <a [routerLink]="['../sensor', protocolentry.sensor?.id, 'view' ]" >{{protocolentry.sensor?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolentry.reagent">
+                        <a [routerLink]="['../reagent', protocolentry.reagent?.id, 'view' ]" >{{protocolentry.reagent?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/protocolentry', protocolentry.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/protocolentry', protocolentry.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'protocolentry', { outlets: { popup: protocolentry.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

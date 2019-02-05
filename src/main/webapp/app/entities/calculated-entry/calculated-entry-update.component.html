@@ -1,0 +1,132 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-calculated-entry-heading">Create or edit a Calculated Entry</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!calculatedEntry.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="calculatedEntry.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sequencenumber">Sequencenumber</label>
+                    <input type="number" class="form-control" name="sequencenumber" id="field_sequencenumber"
+                        [(ngModel)]="calculatedEntry.sequencenumber" required/>
+                    <div [hidden]="!(editForm.controls.sequencenumber?.dirty && editForm.controls.sequencenumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sequencenumber?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.sequencenumber?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_aa">Aa</label>
+                    <input type="text" class="form-control" name="aa" id="field_aa"
+                        [(ngModel)]="calculatedEntry.aa" required/>
+                    <div [hidden]="!(editForm.controls.aa?.dirty && editForm.controls.aa?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.aa?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sc">Sc</label>
+                    <input type="number" class="form-control" name="sc" id="field_sc"
+                        [(ngModel)]="calculatedEntry.sc" required/>
+                    <div [hidden]="!(editForm.controls.sc?.dirty && editForm.controls.sc?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sc?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.sc?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dc">Dc</label>
+                    <input type="number" class="form-control" name="dc" id="field_dc"
+                        [(ngModel)]="calculatedEntry.dc" required/>
+                    <div [hidden]="!(editForm.controls.dc?.dirty && editForm.controls.dc?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dc?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dc?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_scale">Scale</label>
+                    <input type="number" class="form-control" name="scale" id="field_scale"
+                        [(ngModel)]="calculatedEntry.scale" required/>
+                    <div [hidden]="!(editForm.controls.scale?.dirty && editForm.controls.scale?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.scale?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.scale?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mwwithprotection">Mwwithprotection</label>
+                    <input type="number" class="form-control" name="mwwithprotection" id="field_mwwithprotection"
+                        [(ngModel)]="calculatedEntry.mwwithprotection" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mwwithoutprotection">Mwwithoutprotection</label>
+                    <input type="number" class="form-control" name="mwwithoutprotection" id="field_mwwithoutprotection"
+                        [(ngModel)]="calculatedEntry.mwwithoutprotection" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_eachaaweight">Eachaaweight</label>
+                    <input type="number" class="form-control" name="eachaaweight" id="field_eachaaweight"
+                        [(ngModel)]="calculatedEntry.eachaaweight" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_difficulty">Difficulty</label>
+                    <input type="number" class="form-control" name="difficulty" id="field_difficulty"
+                        [(ngModel)]="calculatedEntry.difficulty" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_currentresinweight">Currentresinweight</label>
+                    <input type="number" class="form-control" name="currentresinweight" id="field_currentresinweight"
+                        [(ngModel)]="calculatedEntry.currentresinweight" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_protocolname">Protocolname</label>
+                    <input type="text" class="form-control" name="protocolname" id="field_protocolname"
+                        [(ngModel)]="calculatedEntry.protocolname" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_calculated">Calculated</label>
+                    <select class="form-control" id="field_calculated" name="calculated" [(ngModel)]="calculatedEntry.calculated" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="calculatedOption.id === calculatedEntry.calculated?.id ? calculatedEntry.calculated : calculatedOption" *ngFor="let calculatedOption of calculateds; trackBy: trackCalculatedById">{{calculatedOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
