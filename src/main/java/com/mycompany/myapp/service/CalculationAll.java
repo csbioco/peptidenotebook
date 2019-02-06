@@ -7,6 +7,10 @@ import com.mycompany.myapp.repository.CalculatedRepository;
 import com.mycompany.myapp.domain.CalculatedEntry;
 import com.mycompany.myapp.repository.CalculatedEntryRepository;
 import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.domain.Protocolentry;
+import com.mycompany.myapp.repository.ProtocolentryRepository;
+import com.mycompany.myapp.service.classlib.Ret;
+import com.mycompany.myapp.service.classlib.Protocolret;
 
 import java.util.*;
 
@@ -20,12 +24,14 @@ public class CalculationAll {
     private final CalculatedEntryRepository calculatedEntryRepository;
     private final AasRepository aasRepository;
     private final UserService userService;
+    private final ProtocolentryRepository protocolentryRepository;
     public CalculationAll(CalculatedRepository calculatedRepository, CalculatedEntryRepository calculatedEntryRepository,
-                          AasRepository aasRepository, UserService userService) {
+                          AasRepository aasRepository, UserService userService, ProtocolentryRepository protocolentryRepository) {
         this.calculatedRepository = calculatedRepository;
         this.calculatedEntryRepository = calculatedEntryRepository;
         this.aasRepository = aasRepository;
         this.userService = userService;
+        this.protocolentryRepository = protocolentryRepository;
     }
 
     @Transactional
@@ -43,6 +49,9 @@ public class CalculationAll {
             createCalculatedEntries[i].setCalculated(inputcal);
             createCalculatedEntries[i].setSequencenumber((i + 1));
             createCalculatedEntries[i].setScale(scale);
+            //getProtocolname
+            createCalculatedEntries[i].setProtocolname(inputcal.getProtocolname());
+
             calculatedEntryRepository.save(createCalculatedEntries[i]);
         }
     }
@@ -71,12 +80,12 @@ public class CalculationAll {
         return true;
     }
 
-
+    HashMap<String, Double[]> protocolmap;
     @Transactional
     public void calculateresult(Long id) {
         List<CalculatedEntry> entry = calculatedEntryRepository.findByCalculateId(id);
         Calculated calculatedata = calculatedRepository.findByCalculateId(id);
-        
+        protocolmap = new HashMap<>();
         //sort calculated entry
         Collections.sort(entry, (CalculatedEntry c1, CalculatedEntry c2) -> {
             return c2.getSequencenumber().compareTo(c1.getSequencenumber());
@@ -91,7 +100,7 @@ public class CalculationAll {
         int numc = 0, numh = 0, numn = 0, numo = 0, nums = 0;
         double pi = calculatepi(entry, positionMap);
 
-
+        double totreagentcost = 0.0;
         double mwwithprotection = 18 - 2 * calculatedata.getBound() * 1.01;
         double mwwithoutprotection = 18 - 2 * calculatedata.getBound() * 1.01;
         int basic = 0, acid = 0, hydro = 0;
@@ -116,6 +125,18 @@ public class CalculationAll {
                 }
             }
    
+
+            List<Protocolentry> curprotocol = protocolentryRepository.findByProtocolId(Long.parseLong(entry.get(i).getProtocolname()));
+            for (Protocolentry p : curprotocol) {
+                if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
+                    protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
+                }
+                protocolmap.get(p.getReagent().getReagentname())[0] += (p.getSensor().getAmount());
+                protocolmap.get(p.getReagent().getReagentname())[1] += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                protocolmap.get(p.getReagent().getReagentname())[2] += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
+                totreagentcost += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                totreagentcost += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
+            }
 
             // int basic = 0, acid = 0, hydro = 0;
             if (positionMap.get(entry.get(i).getAa()).getSolubility().equals("H")) {
@@ -180,6 +201,7 @@ public class CalculationAll {
         calculatedata.setSumeachaaweight(Math.round(sumeachaaweight * 100.0) / 100.0); 
         calculatedata.setUser(userService.getUserWithAuthorities().get());
         calculatedata.setSolubility(basic + "B" + acid + "A" + hydro + "H");
+        calculatedata.setCostwaste(Math.round(totreagentcost * 100.0) / 100.0);
         calculatedRepository.save(calculatedata);
     }
 
@@ -216,6 +238,20 @@ public class CalculationAll {
             }
         }
         return current_pi;
+    }
+
+    public Ret returncal(Long id) {
+        calculateresult(id);
+        List<CalculatedEntry> res_cal = calculatedEntryRepository.findByCalculateId(id);
+        //protocolmap  HashMap<String, Double[]>
+        List<Protocolret> res_pro = new ArrayList<>();
+        Double totolcost = 0.0;
+        for (String e : protocolmap.keySet()) {
+            res_pro.add(new Protocolret(e, protocolmap.get(e)[0], protocolmap.get(e)[1], protocolmap.get(e)[2]));
+            totolcost += protocolmap.get(e)[1] + protocolmap.get(e)[2];
+        }
+        protocolmap.clear();
+        return new Ret(res_pro, res_cal);
     }
 }
 

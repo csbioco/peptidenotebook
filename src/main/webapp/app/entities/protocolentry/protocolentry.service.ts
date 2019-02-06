@@ -35,4 +35,8 @@ export class ProtocolentryService {
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
+
+    querycal(id: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IProtocolentry[]>(`${SERVER_API_URL + 'api/protocolentriescal'}/${id}`, { observe: 'response' });
+    }
 }

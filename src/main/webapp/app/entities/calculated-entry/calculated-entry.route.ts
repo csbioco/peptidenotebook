@@ -11,6 +11,7 @@ import { CalculatedEntryDetailComponent } from './calculated-entry-detail.compon
 import { CalculatedEntryUpdateComponent } from './calculated-entry-update.component';
 import { CalculatedEntryDeletePopupComponent } from './calculated-entry-delete-dialog.component';
 import { ICalculatedEntry } from 'app/shared/model/calculated-entry.model';
+import { CalculatedEntryFindbyidComponent } from './calculated-entry-findbyid/calculated-entry-findbyid.component';
 
 @Injectable({ providedIn: 'root' })
 export class CalculatedEntryResolve implements Resolve<ICalculatedEntry> {
@@ -71,6 +72,15 @@ export const calculatedEntryRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'CalculatedEntries'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'calculated-entrycal/:id',
+        component: CalculatedEntryFindbyidComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'CalculatedEntriesbyid'
         },
         canActivate: [UserRouteAccessService]
     }

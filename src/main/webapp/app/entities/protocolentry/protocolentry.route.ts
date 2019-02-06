@@ -11,6 +11,7 @@ import { ProtocolentryDetailComponent } from './protocolentry-detail.component';
 import { ProtocolentryUpdateComponent } from './protocolentry-update.component';
 import { ProtocolentryDeletePopupComponent } from './protocolentry-delete-dialog.component';
 import { IProtocolentry } from 'app/shared/model/protocolentry.model';
+import { ProtocolentrycalComponent } from './protocoentrycal/protocolentrycal.component';
 
 @Injectable({ providedIn: 'root' })
 export class ProtocolentryResolve implements Resolve<IProtocolentry> {
@@ -68,6 +69,15 @@ export const protocolentryRoute: Routes = [
         resolve: {
             protocolentry: ProtocolentryResolve
         },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Protocolentries'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'protocolentriescal/:id',
+        component: ProtocolentrycalComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Protocolentries'

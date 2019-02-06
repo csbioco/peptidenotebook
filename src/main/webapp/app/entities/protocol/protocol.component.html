@@ -19,7 +19,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let protocol of protocols ;trackBy: trackId">
-                <td>{{protocol.protocolname}}</td>
+                <td><a [routerLink]="['/protocolentry/protocolentriescal/', protocol.id]">{{protocol.protocolname}}</a></td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

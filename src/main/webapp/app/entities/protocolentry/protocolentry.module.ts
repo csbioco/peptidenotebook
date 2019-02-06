@@ -9,7 +9,8 @@ import {
     ProtocolentryDeletePopupComponent,
     ProtocolentryDeleteDialogComponent,
     protocolentryRoute,
-    protocolentryPopupRoute
+    protocolentryPopupRoute,
+    ProtocolentrycalComponent
 } from './';
 
 const ENTITY_STATES = [...protocolentryRoute, ...protocolentryPopupRoute];
@@ -21,13 +22,15 @@ const ENTITY_STATES = [...protocolentryRoute, ...protocolentryPopupRoute];
         ProtocolentryDetailComponent,
         ProtocolentryUpdateComponent,
         ProtocolentryDeleteDialogComponent,
-        ProtocolentryDeletePopupComponent
+        ProtocolentryDeletePopupComponent,
+        ProtocolentrycalComponent
     ],
     entryComponents: [
         ProtocolentryComponent,
         ProtocolentryUpdateComponent,
         ProtocolentryDeleteDialogComponent,
-        ProtocolentryDeletePopupComponent
+        ProtocolentryDeletePopupComponent,
+        ProtocolentrycalComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -9,7 +9,8 @@ import {
     CalculatedEntryDeletePopupComponent,
     CalculatedEntryDeleteDialogComponent,
     calculatedEntryRoute,
-    calculatedEntryPopupRoute
+    calculatedEntryPopupRoute,
+    CalculatedEntryFindbyidComponent
 } from './';
 
 const ENTITY_STATES = [...calculatedEntryRoute, ...calculatedEntryPopupRoute];
@@ -21,13 +22,15 @@ const ENTITY_STATES = [...calculatedEntryRoute, ...calculatedEntryPopupRoute];
         CalculatedEntryDetailComponent,
         CalculatedEntryUpdateComponent,
         CalculatedEntryDeleteDialogComponent,
-        CalculatedEntryDeletePopupComponent
+        CalculatedEntryDeletePopupComponent,
+        CalculatedEntryFindbyidComponent
     ],
     entryComponents: [
         CalculatedEntryComponent,
         CalculatedEntryUpdateComponent,
         CalculatedEntryDeleteDialogComponent,
-        CalculatedEntryDeletePopupComponent
+        CalculatedEntryDeletePopupComponent,
+        CalculatedEntryFindbyidComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

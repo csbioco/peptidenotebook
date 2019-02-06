@@ -4,3 +4,4 @@ export * from './calculated-entry-delete-dialog.component';
 export * from './calculated-entry-detail.component';
 export * from './calculated-entry.component';
 export * from './calculated-entry.route';
+export * from './calculated-entry-findbyid/calculated-entry-findbyid.component';

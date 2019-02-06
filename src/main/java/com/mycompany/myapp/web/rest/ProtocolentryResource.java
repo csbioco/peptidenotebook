@@ -97,6 +97,21 @@ public class ProtocolentryResource {
         return ResponseUtil.wrapOrNotFound(protocolentry);
     }
 
+
+
+    /**
+     * GET  /protocolentriescal/:id : get the "id" protocolentry.
+     *
+     * @param id the id of the protocolentry to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the protocolentry, or with status 404 (Not Found)
+     */
+    @GetMapping("/protocolentriescal/{id}")
+    public List<Protocolentry> getProtocolentrycal(@PathVariable Long id) {
+        log.debug("REST request to get Protocolentry by protocol id: {}", id);
+        List<Protocolentry> protocolentry = protocolentryRepository.findByProtocolId(id);
+        return protocolentry;
+    }
+
     /**
      * DELETE  /protocolentries/:id : delete the "id" protocolentry.
      *

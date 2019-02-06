@@ -15,6 +15,8 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import com.mycompany.myapp.service.CalculationAll;
+import com.mycompany.myapp.service.classlib.Ret;
 
 /**
  * REST controller for managing CalculatedEntry.
@@ -28,9 +30,12 @@ public class CalculatedEntryResource {
     private static final String ENTITY_NAME = "calculatedEntry";
 
     private final CalculatedEntryRepository calculatedEntryRepository;
+    private final CalculationAll calculationAll;
 
-    public CalculatedEntryResource(CalculatedEntryRepository calculatedEntryRepository) {
+    public CalculatedEntryResource(CalculatedEntryRepository calculatedEntryRepository, CalculationAll calculationAll) {
         this.calculatedEntryRepository = calculatedEntryRepository;
+        this.calculationAll = calculationAll;
+
     }
 
     /**
@@ -111,9 +116,9 @@ public class CalculatedEntryResource {
     }
 
     @GetMapping("/calculated-entriesbycal/{id}")
-    public List<CalculatedEntry> getAllCalculatedEntriesbycalId(@PathVariable Long id) {
+    public Ret getAllCalculatedEntriesbycalId(@PathVariable Long id) {
         log.debug("REST request to get all CalculatedEntries by calculatede id");
-        List<CalculatedEntry> res = calculatedEntryRepository.findByCalculateId(id);
-        return res;
+        Ret return_res = calculationAll.returncal(id);
+        return return_res;
     }
 }

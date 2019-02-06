@@ -1,0 +1,150 @@
+<div>
+    <h2 id="page-heading">
+        <span>Calculated Result</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+                <div *ngIf="calculated">
+                    <hr>
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span>Sequence</span></dt>
+                        <dd>
+                            <span>{{calculated.sequence}}</span>
+                        </dd>
+                        <dt><span>Mwwithoutprotection</span></dt>
+                        <dd>
+                            <span>{{calculatedEntries[calculatedEntries.length - 1]?.mwwithoutprotection}}</span>
+                        </dd>
+                        <dt><span>Sc</span></dt>
+                        <dd>
+                            <span>{{calculated.sc}}</span>
+                        </dd>
+                        <dt><span>Dc</span></dt>
+                        <dd>
+                            <span>{{calculated.dc}}</span>
+                        </dd>
+                        <dt><span>Scale</span></dt>
+                        <dd>
+                            <span>{{calculated.scale}}</span>
+                        </dd>
+                        <dt><span>Pi</span></dt>
+                        <dd>
+                            <span>{{calculated.pi}}</span>
+                        </dd>
+                        <dt><span>Netcharge</span></dt>
+                        <dd>
+                            <span>{{calculated.netcharge}}</span>
+                        </dd>
+                        <dt><span>Solubility</span></dt>
+                        <dd>
+                            <span>{{calculated.solubility}}</span>
+                        </dd>
+                        <dt><span>Numc</span></dt>
+                        <dd>
+                            <span>{{calculated.numc}}</span>
+                        </dd>
+                        <dt><span>Numh</span></dt>
+                        <dd>
+                            <span>{{calculated.numh}}</span>
+                        </dd>
+                        <dt><span>Numn</span></dt>
+                        <dd>
+                            <span>{{calculated.numn}}</span>
+                        </dd>
+                        <dt><span>Numo</span></dt>
+                        <dd>
+                            <span>{{calculated.numo}}</span>
+                        </dd>
+                        <dt><span>Nums</span></dt>
+                        <dd>
+                            <span>{{calculated.nums}}</span>
+                        </dd>
+                        <dt><span>Startresin</span></dt>
+                        <dd>
+                            <span>{{calculated.startresin}}</span>
+                        </dd>
+                        <dt><span>Costresin</span></dt>
+                        <dd>
+                            <span>{{calculated.costresin}}</span>
+                        </dd>
+                        <dt><span>Weightgain</span></dt>
+                        <dd>
+                            <span>{{calculated.weightgain}}</span>
+                        </dd>
+                        <dt><span>Totalweight</span></dt>
+                        <dd>
+                            <span>{{calculated.totalweight}}</span>
+                        </dd>
+                        <dt><span>Costaa</span></dt>
+                        <dd>
+                            <span>{{calculated.costaa}}</span>
+                        </dd>
+                        <dt><span>Sumeachaaweight</span></dt>
+                        <dd>
+                            <span>{{calculated.sumeachaaweight}}</span>
+                        </dd>
+                        <dt><span>Resinunitprice</span></dt>
+                        <dd>
+                            <span>{{calculated.resinunitprice}}</span>
+                        </dd>
+                        <dt><span>Substitude</span></dt>
+                        <dd>
+                            <span>{{calculated.substitude}}</span>
+                        </dd>
+                    </dl>
+                </div>
+    </div>
+    <div *ngIf="chart" class="col-sm-8">
+        <canvas id="canvas">{{ chart }}</canvas>
+    </div>
+</div>
+
+
+<div class="table-responsive" *ngIf="calculatedEntries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Sequencenumber</span></th>
+            <th><span>Aa</span></th>
+            <th><span>Sc</span></th>
+            <th><span>Dc</span></th>
+            <th><span>Scale</span></th>
+            <th><span>Mwwithprotection</span></th>
+            <th><span>Mwwithoutprotection</span></th>
+            <th><span>Eachaaweight</span></th>
+            <th><span>Difficulty</span></th>
+            <th><span>Currentresinweight</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let calculatedEntry of calculatedEntries ;trackBy: trackId">
+                <td>{{calculatedEntry.sequencenumber}}</td>
+                <td>{{calculatedEntry.aa}}</td>
+                <td>{{calculatedEntry.sc}}</td>
+                <td>{{calculatedEntry.dc}}</td>
+                <td>{{calculatedEntry.scale}}</td>
+                <td>{{calculatedEntry.mwwithprotection}}</td>
+                <td>{{calculatedEntry.mwwithoutprotection}}</td>
+                <td>{{calculatedEntry.eachaaweight}}</td>
+                <td>{{calculatedEntry.difficulty}}</td>
+                <td>{{calculatedEntry.currentresinweight}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/calculated-entry', calculatedEntry.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>

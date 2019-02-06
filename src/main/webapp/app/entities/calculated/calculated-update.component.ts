@@ -9,6 +9,8 @@ import { CalculatedService } from './calculated.service';
 import { IUser, UserService } from 'app/core';
 import { IProtocol } from 'app/shared/model/protocol.model';
 import { ProtocolService } from '../protocol/protocol.service';
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'jhi-calculated-update',
     templateUrl: './calculated-update.component.html'
@@ -24,13 +26,21 @@ export class CalculatedUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected calculatedService: CalculatedService,
         protected userService: UserService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        protected router: Router
     ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ calculated }) => {
             this.calculated = calculated;
+            this.calculated.scale = 1;
+            this.calculated.sc = 1;
+            this.calculated.dc = 0;
+            this.calculated.startresin = 1;
+            this.calculated.resinunitprice = 1;
+            this.calculated.substitude = 1;
+            this.calculated.bound = 0;
         });
         this.userService
             .query()
@@ -49,9 +59,6 @@ export class CalculatedUpdateComponent implements OnInit {
             .subscribe(
                 (res: IProtocol[]) => {
                     this.protocols = res;
-                    console.log('wocaonima');
-
-                    console.log(res[0].protocolname);
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
@@ -71,12 +78,12 @@ export class CalculatedUpdateComponent implements OnInit {
     }
 
     protected subscribeToSaveResponse(result: Observable<HttpResponse<ICalculated>>) {
-        result.subscribe((res: HttpResponse<ICalculated>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<ICalculated>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    protected onSaveSuccess() {
+    protected onSaveSuccess(res: HttpResponse<ICalculated>) {
         this.isSaving = false;
-        this.previousState();
+        this.router.navigate(['/calculated-entry/calculated-entrycal/' + res.body.id]);
     }
 
     protected onSaveError() {
