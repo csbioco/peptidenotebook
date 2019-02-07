@@ -30,6 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.mycompany.myapp.service.CalculationAll;
+import com.mycompany.myapp.service.UserService;
 
 /**
  * Test class for the ProtocolResource REST controller.
@@ -46,6 +48,11 @@ public class ProtocolResourceIntTest {
     @Autowired
     private ProtocolRepository protocolRepository;
 
+    @Autowired
+    private CalculationAll calculationAll;
+
+    @Autowired
+    private UserService userService;
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -68,7 +75,7 @@ public class ProtocolResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ProtocolResource protocolResource = new ProtocolResource(protocolRepository);
+        final ProtocolResource protocolResource = new ProtocolResource(protocolRepository, userService, calculationAll);
         this.restProtocolMockMvc = MockMvcBuilders.standaloneSetup(protocolResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

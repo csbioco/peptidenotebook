@@ -9,6 +9,8 @@ import com.mycompany.myapp.repository.CalculatedEntryRepository;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.domain.Protocolentry;
 import com.mycompany.myapp.repository.ProtocolentryRepository;
+import com.mycompany.myapp.domain.Protocol;
+import com.mycompany.myapp.repository.ProtocolRepository;
 import com.mycompany.myapp.service.classlib.Ret;
 import com.mycompany.myapp.service.classlib.Protocolret;
 
@@ -25,13 +27,15 @@ public class CalculationAll {
     private final AasRepository aasRepository;
     private final UserService userService;
     private final ProtocolentryRepository protocolentryRepository;
+    private final ProtocolRepository protocolRepository;
     public CalculationAll(CalculatedRepository calculatedRepository, CalculatedEntryRepository calculatedEntryRepository,
-                          AasRepository aasRepository, UserService userService, ProtocolentryRepository protocolentryRepository) {
+                          AasRepository aasRepository, UserService userService, ProtocolentryRepository protocolentryRepository, ProtocolRepository protocolRepository) {
         this.calculatedRepository = calculatedRepository;
         this.calculatedEntryRepository = calculatedEntryRepository;
         this.aasRepository = aasRepository;
         this.userService = userService;
         this.protocolentryRepository = protocolentryRepository;
+        this.protocolRepository  = protocolRepository;
     }
 
     @Transactional
@@ -127,6 +131,9 @@ public class CalculationAll {
    
             if (entry.get(i).getProtocolname() != null) {
                 List<Protocolentry> curprotocol = protocolentryRepository.findByProtocolId(Long.parseLong(entry.get(i).getProtocolname()));
+                if (curprotocol == null || curprotocol.size() == 0) {
+                    continue;
+                }
                 for (Protocolentry p : curprotocol) {
                     if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
                         protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
@@ -257,8 +264,9 @@ public class CalculationAll {
     }
 
 
-    public void deleteallreagentsensorprotocol() {
-        
+    public void deleteallreagentsensorprotocol(Long id) {  
+        protocolentryRepository.deleteByProtocolId(id);;
+        protocolRepository.deleteById(id);
     }
 }
 

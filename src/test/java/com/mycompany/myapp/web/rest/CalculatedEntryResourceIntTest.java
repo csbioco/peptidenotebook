@@ -30,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.mycompany.myapp.service.CalculationAll;
 
 /**
  * Test class for the CalculatedEntryResource REST controller.
@@ -80,6 +81,8 @@ public class CalculatedEntryResourceIntTest {
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
+    private CalculationAll calculationAll;
+    @Autowired
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
     @Autowired
@@ -98,7 +101,7 @@ public class CalculatedEntryResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final CalculatedEntryResource calculatedEntryResource = new CalculatedEntryResource(calculatedEntryRepository);
+        final CalculatedEntryResource calculatedEntryResource = new CalculatedEntryResource(calculatedEntryRepository, calculationAll);
         this.restCalculatedEntryMockMvc = MockMvcBuilders.standaloneSetup(calculatedEntryResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

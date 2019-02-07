@@ -23,6 +23,7 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import com.mycompany.myapp.service.UserService;
 
 
 import static com.mycompany.myapp.web.rest.TestUtil.createFormattingConversionService;
@@ -54,7 +55,8 @@ public class ReagentResourceIntTest {
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
@@ -74,7 +76,7 @@ public class ReagentResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ReagentResource reagentResource = new ReagentResource(reagentRepository);
+        final ReagentResource reagentResource = new ReagentResource(reagentRepository, userService);
         this.restReagentMockMvc = MockMvcBuilders.standaloneSetup(reagentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

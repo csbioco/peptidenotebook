@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import com.mycompany.myapp.service.CalculationAll;
 
 /**
  * REST controller for managing Protocol.
@@ -30,10 +31,12 @@ public class ProtocolResource {
 
     private final ProtocolRepository protocolRepository;
     private final UserService userService;
+    private final CalculationAll calculationAll;
 
-    public ProtocolResource(ProtocolRepository protocolRepository, UserService userService) {
+    public ProtocolResource(ProtocolRepository protocolRepository, UserService userService, CalculationAll calculationAll) {
         this.protocolRepository = protocolRepository;
         this.userService = userService;
+        this.calculationAll = calculationAll;
     }
 
     /**
@@ -110,7 +113,7 @@ public class ProtocolResource {
     @DeleteMapping("/protocols/{id}")
     public ResponseEntity<Void> deleteProtocol(@PathVariable Long id) {
         log.debug("REST request to delete Protocol : {}", id);
-        protocolRepository.deleteById(id);
+        calculationAll.deleteallreagentsensorprotocol(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

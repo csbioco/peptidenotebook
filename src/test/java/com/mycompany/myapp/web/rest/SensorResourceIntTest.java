@@ -30,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.mycompany.myapp.service.UserService;
 
 /**
  * Test class for the SensorResource REST controller.
@@ -49,6 +50,8 @@ public class SensorResourceIntTest {
     @Autowired
     private SensorRepository sensorRepository;
 
+    @Autowired
+    private UserService userService;
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -71,7 +74,7 @@ public class SensorResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SensorResource sensorResource = new SensorResource(sensorRepository);
+        final SensorResource sensorResource = new SensorResource(sensorRepository, userService);
         this.restSensorMockMvc = MockMvcBuilders.standaloneSetup(sensorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
