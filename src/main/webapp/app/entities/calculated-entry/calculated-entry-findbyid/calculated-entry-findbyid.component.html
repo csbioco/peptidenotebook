@@ -20,18 +20,6 @@
                         <dd>
                             <span>{{calculatedEntries[calculatedEntries.length - 1]?.mwwithoutprotection}}</span>
                         </dd>
-                        <dt><span>Sc</span></dt>
-                        <dd>
-                            <span>{{calculated.sc}}</span>
-                        </dd>
-                        <dt><span>Dc</span></dt>
-                        <dd>
-                            <span>{{calculated.dc}}</span>
-                        </dd>
-                        <dt><span>Scale</span></dt>
-                        <dd>
-                            <span>{{calculated.scale}}</span>
-                        </dd>
                         <dt><span>Pi</span></dt>
                         <dd>
                             <span>{{calculated.pi}}</span>
@@ -40,30 +28,15 @@
                         <dd>
                             <span>{{calculated.netcharge}}</span>
                         </dd>
+                        <dt><span>Num </span></dt>
+                        <dd>
+                            <span>C<sub>{{calculated.numc}}</sub>H<sub>{{calculated.numh}}</sub>N<sub>{{calculated.numn}}</sub>O<sub>{{calculated.numo}}</sub>S<sub>{{calculated.nums}}</sub></span>
+                        </dd>
                         <dt><span>Solubility</span></dt>
                         <dd>
                             <span>{{calculated.solubility}}</span>
                         </dd>
-                        <dt><span>Numc</span></dt>
-                        <dd>
-                            <span>{{calculated.numc}}</span>
-                        </dd>
-                        <dt><span>Numh</span></dt>
-                        <dd>
-                            <span>{{calculated.numh}}</span>
-                        </dd>
-                        <dt><span>Numn</span></dt>
-                        <dd>
-                            <span>{{calculated.numn}}</span>
-                        </dd>
-                        <dt><span>Numo</span></dt>
-                        <dd>
-                            <span>{{calculated.numo}}</span>
-                        </dd>
-                        <dt><span>Nums</span></dt>
-                        <dd>
-                            <span>{{calculated.nums}}</span>
-                        </dd>
+                        
                         <dt><span>Startresin</span></dt>
                         <dd>
                             <span>{{calculated.startresin}}</span>
@@ -136,12 +109,12 @@
                 <td>{{calculatedEntry.currentresinweight}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <!-- <button type="submit"
                                 [routerLink]="['/calculated-entry', calculatedEntry.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
-                        </button>
+                        </button> -->
                     </div>
                 </td>
             </tr>
