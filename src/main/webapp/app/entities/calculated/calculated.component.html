@@ -1,12 +1,6 @@
 <div>
     <h2 id="page-heading">
         <span>Calculateds</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-calculated" [routerLink]="['/calculated/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span >
-            Create new Calculated
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
@@ -36,7 +30,6 @@
             <th><span>Substitude</span></th>
             <th><span>Bound</span></th>
             <th><span>Costwaste</span></th>
-            <th><span>Protocolname</span></th>
             <th></th>
             </tr>
             </thead>
@@ -64,11 +57,11 @@
                 <td>{{calculated.substitude}}</td>
                 <td>{{calculated.bound}}</td>
                 <td>{{calculated.costwaste}}</td>
-                <td>{{calculated.protocolname}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/calculated', calculated.id, 'view' ]"
+                        
+                                [routerLink]="['/calculated-entry/calculated-entrycal/', calculated.id ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>

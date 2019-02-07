@@ -19,6 +19,7 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     Entryid: any;
+    protocolret: Protocolret[];
     chart = [];
     constructor(
         protected calculatedEntryService: CalculatedEntryService,
@@ -32,6 +33,7 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
         this.calculatedEntryService.querybycalid(Number(this.Entryid)).subscribe(
             (res: HttpResponse<any>) => {
                 this.calculatedEntries = res.body.protocolentry;
+                this.protocolret = res.body.protocolret;
                 this.calculated = this.calculatedEntries[this.calculatedEntries.length - 1].calculated;
                 const seq = [];
                 const difficulties = [];
@@ -102,4 +104,11 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+}
+
+class Protocolret {
+    solvent: string;
+    amount: number;
+    reagentcost: number;
+    wastecost: number;
 }

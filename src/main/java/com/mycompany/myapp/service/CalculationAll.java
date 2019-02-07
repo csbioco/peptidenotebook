@@ -125,18 +125,20 @@ public class CalculationAll {
                 }
             }
    
-
-            List<Protocolentry> curprotocol = protocolentryRepository.findByProtocolId(Long.parseLong(entry.get(i).getProtocolname()));
-            for (Protocolentry p : curprotocol) {
-                if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
-                    protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
+            if (entry.get(i).getProtocolname() != null) {
+                List<Protocolentry> curprotocol = protocolentryRepository.findByProtocolId(Long.parseLong(entry.get(i).getProtocolname()));
+                for (Protocolentry p : curprotocol) {
+                    if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
+                        protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
+                    }
+                    protocolmap.get(p.getReagent().getReagentname())[0] += (p.getSensor().getAmount());
+                    protocolmap.get(p.getReagent().getReagentname())[1] += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                    protocolmap.get(p.getReagent().getReagentname())[2] += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
+                    totreagentcost += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                    totreagentcost += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
                 }
-                protocolmap.get(p.getReagent().getReagentname())[0] += (p.getSensor().getAmount());
-                protocolmap.get(p.getReagent().getReagentname())[1] += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
-                protocolmap.get(p.getReagent().getReagentname())[2] += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
-                totreagentcost += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
-                totreagentcost += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
             }
+
 
             // int basic = 0, acid = 0, hydro = 0;
             if (positionMap.get(entry.get(i).getAa()).getSolubility().equals("H")) {
@@ -252,6 +254,11 @@ public class CalculationAll {
         }
         protocolmap.clear();
         return new Ret(res_pro, res_cal);
+    }
+
+
+    public void deleteallreagentsensorprotocol() {
+        
     }
 }
 

@@ -23,23 +23,20 @@
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_protocol">Protocol</label>
-                    <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="protocolentry.protocol" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="protocolOption.id === protocolentry.protocol?.id ? protocolentry.protocol : protocolOption" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.id}}</option>
+                    <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="protocolentry.protocol" required>
+                        <option [ngValue]="protocolOption.id === protocolentry.protocol?.id ? protocolentry.protocol : protocolOption" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_sensor">Sensor</label>
-                    <select class="form-control" id="field_sensor" name="sensor" [(ngModel)]="protocolentry.sensor" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="sensorOption.id === protocolentry.sensor?.id ? protocolentry.sensor : sensorOption" *ngFor="let sensorOption of sensors; trackBy: trackSensorById">{{sensorOption.id}}</option>
+                    <select class="form-control" id="field_sensor" name="sensor" [(ngModel)]="protocolentry.sensor" required>
+                        <option [ngValue]="sensorOption.id === protocolentry.sensor?.id ? protocolentry.sensor : sensorOption" *ngFor="let sensorOption of sensors; trackBy: trackSensorById">{{sensorOption.sensorname}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_reagent">Reagent</label>
-                    <select class="form-control" id="field_reagent" name="reagent" [(ngModel)]="protocolentry.reagent" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="reagentOption.id === protocolentry.reagent?.id ? protocolentry.reagent : reagentOption" *ngFor="let reagentOption of reagents; trackBy: trackReagentById">{{reagentOption.id}}</option>
+                    <select class="form-control" id="field_reagent" name="reagent" [(ngModel)]="protocolentry.reagent" required>
+                        <option [ngValue]="reagentOption.id === protocolentry.reagent?.id ? protocolentry.reagent : reagentOption" *ngFor="let reagentOption of reagents; trackBy: trackReagentById">{{reagentOption.reagentname}}</option>
                     </select>
                 </div>
             </div>
@@ -54,3 +51,4 @@
         </form>
     </div>
 </div>
+<button type="button" routerLink="/protocol" class="btn btn-primary btn-md">Back</button>

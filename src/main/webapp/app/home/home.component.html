@@ -1,10 +1,28 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
+
+
+<div class="d-flex justify-content-center" style="width: 100%;">
+    <ngb-carousel *ngIf="images">
+            <ng-template ngbSlide>
+            <img [src]="images[0]" class="img-responsive center-block" alt="Random first slide">
+            <div class="carousel-caption">
+            </div>
+            </ng-template>
+            <ng-template ngbSlide>
+            <img [src]="images[1]" alt="Random second slide">
+            <div class="carousel-caption">
+            </div>
+            </ng-template>
+            <ng-template ngbSlide>
+            <img [src]="images[2]" alt="Random third slide">
+            <div class="carousel-caption">
+            </div>
+            </ng-template>
+        </ngb-carousel>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
+<div class="row" style="text-align:center">
+
+    <div class="container">
+        <h1 class="display-4">Thank for choosing Peptide Notebook!</h1>
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -13,25 +31,15 @@
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
+                <a class="alert-link" (click)="login()">sign in</a>
             </div>
         </div>
 
-        <p>
-            If you have any question on JHipster:
-        </p>
 
-        <ul>
-            <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener">follow @java_hipster on Twitter</a></li>
-        </ul>
-
-        <p>
-            <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
     </div>
 </div>
+
+
+
+<!-- <a href="https://dev-143218.oktapreview.com/oauth2/v1/authorize?idp=0oaj1wrhfkQTI3ZTw0h7&client_id=27352961854-og4k80u9vql0n44lje3qpvqslfo1s4ju.apps.googleusercontent.com&response_type=id_token&response_mode=fragment&scope=openid&redirect_uri=http://localhost:8080/login&state=CSRF&nonce=YsG76jo">Login With Google</a> -->
+

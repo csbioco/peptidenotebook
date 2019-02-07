@@ -148,3 +148,29 @@
             </tbody>
         </table>
     </div>
+
+
+
+
+    <div class="table-responsive" *ngIf="protocolret">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Solvent</span></th>
+            <th><span>Amount</span></th>
+            <th><span>Reagent Cost</span></th>
+            <th><span>Waste Cost</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let proto of protocolret">
+                <td>{{proto.solvent}}</td>
+                <td>{{proto.amount}}</td>
+                <td>{{proto.reagentcost}}</td>
+                <td>{{proto.wastecost}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+

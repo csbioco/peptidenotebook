@@ -34,8 +34,8 @@ export class CalculatedUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ calculated }) => {
             this.calculated = calculated;
-            this.calculated.scale = 1;
             this.calculated.sc = 1;
+            this.calculated.scale = 1;
             this.calculated.dc = 0;
             this.calculated.startresin = 1;
             this.calculated.resinunitprice = 1;
