@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_bound">Bound(0 mean linear)</label>
-                    <input type="number" class="form-control" name="sc" id="field_sc"
+                    <input type="number" class="form-control" name="bound" id="field_sc"
                         [(ngModel)]="calculated.bound" required/>
                     <div [hidden]="!(editForm.controls.bound?.dirty && editForm.controls.bound?.invalid)">
                         <small class="form-text text-danger"

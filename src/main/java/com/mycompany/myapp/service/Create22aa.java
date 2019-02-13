@@ -29,7 +29,7 @@ public class Create22aa {
         int[] numn = {4, 2, 1, 1, 2, 1, 1, 3, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 3, 1, 0};      
         int[] numo = {2, 3, 4, 2, 3, 4, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 3, 2, 2, -1, 2, 3, 2, 2};
         int[] nums = {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0};
-        String[] solubility = {"B", "H", "A", "H", "H", "A", "H", "B", "H", "H", "B", "H", "H", "H", "H", "H", "H", "H", "H", "H", "N", "H", "N", "N", "N"};
+        String[] solubility = {"B","N","A","H","N","A","N","N","H","H","B","H","H","N","N","N","H","H","H","N","N","H","N","N","N"};
         for (int i = 0; i < aminoacid.length; i++) {
             Aas aaentry = new Aas();
             aaentry.setAaname(fullname[i]);

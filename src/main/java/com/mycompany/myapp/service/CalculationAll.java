@@ -78,7 +78,7 @@ public class CalculationAll {
                 numcys++;
             }
         }
-        if (inputcal.getBound() != 0 && inputcal.getBound() >= numcys) {
+        if (inputcal.getBound() != 0 && inputcal.getBound() > numcys / 2) {
             return false;
         }
         return true;
@@ -131,18 +131,17 @@ public class CalculationAll {
    
             if (entry.get(i).getProtocolname() != null) {
                 List<Protocolentry> curprotocol = protocolentryRepository.findByProtocolId(Long.parseLong(entry.get(i).getProtocolname()));
-                if (curprotocol == null || curprotocol.size() == 0) {
-                    continue;
-                }
-                for (Protocolentry p : curprotocol) {
-                    if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
-                        protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
+                if (curprotocol != null || curprotocol.size() != 0) {
+                    for (Protocolentry p : curprotocol) {
+                        if (!protocolmap.containsKey(p.getReagent().getReagentname())) {
+                            protocolmap.put(p.getReagent().getReagentname(), new Double[]{0.0,0.0,0.0});
+                        }
+                        protocolmap.get(p.getReagent().getReagentname())[0] += (p.getSensor().getAmount());
+                        protocolmap.get(p.getReagent().getReagentname())[1] += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                        protocolmap.get(p.getReagent().getReagentname())[2] += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
+                        totreagentcost += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
+                        totreagentcost += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
                     }
-                    protocolmap.get(p.getReagent().getReagentname())[0] += (p.getSensor().getAmount());
-                    protocolmap.get(p.getReagent().getReagentname())[1] += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
-                    protocolmap.get(p.getReagent().getReagentname())[2] += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
-                    totreagentcost += (p.getSensor().getAmount() * p.getReagent().getUnitprice());
-                    totreagentcost += (p.getSensor().getAmount() * p.getReagent().getWasterunitprice());
                 }
             }
 
@@ -168,8 +167,11 @@ public class CalculationAll {
             double tmpeachaaweight = (entry.get(i).getSc() + entry.get(i).getDc()) * entry.get(i).getScale() * positionMap.get(entry.get(i).getAa()).getMwwithprotection();
             sumeachaaweight += tmpeachaaweight;            
             entry.get(i).setEachaaweight(Math.round(tmpeachaaweight * 100.0) / 100.0);
-            double currentresinweight = startresin + mwwithprotection * entry.get(i).getScale();
-            entry.get(i).setCurrentresinweight(Math.round(currentresinweight * 100.0) / 100.0);            
+
+            // use this currentresinweight to store aa cost with protection 
+            double currentaaweight = (entry.get(i).getSc() + entry.get(i).getDc()) * entry.get(i).getScale() * positionMap.get(entry.get(i).getAa()).getMwwithoutprotection();
+            
+            entry.get(i).setCurrentresinweight(Math.round(currentaaweight * 100.0) / 100.0);            
             
             //number of c, h, n, o, s;
             numc += positionMap.get(entry.get(i).getAa()).getNumc();

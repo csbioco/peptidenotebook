@@ -16,7 +16,7 @@
                         <dd>
                             <span>{{calculated.sequence}}</span>
                         </dd>
-                        <dt><span>Mwwithoutprotection</span></dt>
+                        <dt><span>MW Weight</span></dt>
                         <dd>
                             <span>{{calculatedEntries[calculatedEntries.length - 1]?.mwwithoutprotection}}</span>
                         </dd>
@@ -28,53 +28,56 @@
                         <dd>
                             <span>{{calculated.netcharge}}</span>
                         </dd>
-                        <dt><span>Num </span></dt>
+                        <dt><span>Formula</span></dt>
                         <dd>
                             <span>C<sub>{{calculated.numc}}</sub>H<sub>{{calculated.numh}}</sub>N<sub>{{calculated.numn}}</sub>O<sub>{{calculated.numo}}</sub>S<sub>{{calculated.nums}}</sub></span>
-                        </dd>
-
-                        <dt><span>Total Cost</span></dt>
-                        <dd>
-                            <span>{{calculated.costresin + calculated.costaa + calculated.costwaste}}</span>
                         </dd>
 
                         <dt><span>Solubility</span></dt>
                         <dd>
                             <span>{{calculated.solubility}}</span>
                         </dd>
-                        
-                        <dt><span>Startresin</span></dt>
-                        <dd>
-                            <span>{{calculated.startresin}}</span>
-                        </dd>
-                        <dt><span>Costresin</span></dt>
-                        <dd>
-                            <span>{{calculated.costresin}}</span>
-                        </dd>
                         <dt><span>Weightgain</span></dt>
                         <dd>
                             <span>{{calculated.weightgain}}</span>
-                        </dd>
-                        <dt><span>Totalweight</span></dt>
-                        <dd>
-                            <span>{{calculated.totalweight}}</span>
-                        </dd>
-                        <dt><span>Costaa</span></dt>
-                        <dd>
-                            <span>{{calculated.costaa}}</span>
-                        </dd>
-                        <dt><span>Sumeachaaweight</span></dt>
-                        <dd>
-                            <span>{{calculated.sumeachaaweight}}</span>
-                        </dd>
-                        <dt><span>Resinunitprice</span></dt>
-                        <dd>
-                            <span>{{calculated.resinunitprice}}</span>
-                        </dd>
-                        <dt><span>Substitude</span></dt>
-                        <dd>
-                            <span>{{calculated.substitude}}</span>
-                        </dd>
+                        </dd>                
+
+                        <div *ngIf="hasprotocol">
+                                <dt><span>Total Cost</span></dt>
+                                <dd>
+                                    <span>{{calculated.costresin + calculated.costaa + calculated.costwaste}}</span>
+                                </dd>
+                                <dt><span>Startresin</span></dt>
+                                <dd>
+                                    <span>{{calculated.startresin}}</span>
+                                </dd>
+                                <dt><span>Costresin</span></dt>
+                                <dd>
+                                    <span>{{calculated.costresin}}</span>
+                                </dd>
+        
+                                <dt><span>Totalweight</span></dt>
+                                <dd>
+                                    <span>{{calculated.totalweight}}</span>
+                                </dd>
+                                <dt><span>Costaa</span></dt>
+                                <dd>
+                                    <span>{{calculated.costaa}}</span>
+                                </dd>
+                                <dt><span>Sumeachaaweight</span></dt>
+                                <dd>
+                                    <span>{{calculated.sumeachaaweight}}</span>
+                                </dd>
+                                <dt><span>Resinunitprice</span></dt>
+                                <dd>
+                                    <span>{{calculated.resinunitprice}}</span>
+                                </dd>
+                                <dt><span>Substitude</span></dt>
+                                <dd>
+                                    <span>{{calculated.substitude}}</span>
+                                </dd>
+                        </div>
+                        
                     </dl>
                 </div>
     </div>
@@ -88,16 +91,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span>Sequencenumber</span></th>
+            <th><span>Step</span></th>
             <th><span>Aa</span></th>
             <th><span>Sc</span></th>
             <th><span>Dc</span></th>
-            <th><span>Scale</span></th>
-            <th><span>Mwwithprotection</span></th>
-            <th><span>Mwwithoutprotection</span></th>
-            <th><span>Eachaaweight</span></th>
-            <th><span>Difficulty</span></th>
-            <th><span>Currentresinweight</span></th>
+            <th><span>EachwithprotectionCost</span></th>
+            <th><span>EachwithoutprotectionCost</span></th>
             <th></th>
             </tr>
             </thead>
@@ -107,11 +106,7 @@
                 <td>{{calculatedEntry.aa}}</td>
                 <td>{{calculatedEntry.sc}}</td>
                 <td>{{calculatedEntry.dc}}</td>
-                <td>{{calculatedEntry.scale}}</td>
-                <td>{{calculatedEntry.mwwithprotection}}</td>
-                <td>{{calculatedEntry.mwwithoutprotection}}</td>
                 <td>{{calculatedEntry.eachaaweight}}</td>
-                <td>{{calculatedEntry.difficulty}}</td>
                 <td>{{calculatedEntry.currentresinweight}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

@@ -9,8 +9,15 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="protocolentry.id" readonly />
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" for="field_ordernumber">Ordernumber</label>
+                    <label class="form-control-label" for="field_protocol">Protocol</label>
+                    <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="protocolentry.protocol" required>
+                        <option [ngValue]="protocolOption.id === protocolentry.protocol?.id ? protocolentry.protocol : protocolOption" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ordernumber">Step Number</label>
                     <input type="text" class="form-control" name="ordernumber" id="field_ordernumber"
                         [(ngModel)]="protocolentry.ordernumber" required/>
                     <div [hidden]="!(editForm.controls.ordernumber?.dirty && editForm.controls.ordernumber?.invalid)">
@@ -22,21 +29,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_protocol">Protocol</label>
-                    <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="protocolentry.protocol" required>
-                        <option [ngValue]="protocolOption.id === protocolentry.protocol?.id ? protocolentry.protocol : protocolOption" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
+                    <label class="form-control-label" for="field_reagent">Reagent</label>
+                    <select class="form-control" id="field_reagent" name="reagent" [(ngModel)]="protocolentry.reagent" required>
+                        <option [ngValue]="reagentOption.id === protocolentry.reagent?.id ? protocolentry.reagent : reagentOption" *ngFor="let reagentOption of reagents; trackBy: trackReagentById">{{reagentOption.reagentname}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_sensor">Sensor</label>
                     <select class="form-control" id="field_sensor" name="sensor" [(ngModel)]="protocolentry.sensor" required>
                         <option [ngValue]="sensorOption.id === protocolentry.sensor?.id ? protocolentry.sensor : sensorOption" *ngFor="let sensorOption of sensors; trackBy: trackSensorById">{{sensorOption.sensorname}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_reagent">Reagent</label>
-                    <select class="form-control" id="field_reagent" name="reagent" [(ngModel)]="protocolentry.reagent" required>
-                        <option [ngValue]="reagentOption.id === protocolentry.reagent?.id ? protocolentry.reagent : reagentOption" *ngFor="let reagentOption of reagents; trackBy: trackReagentById">{{reagentOption.reagentname}}</option>
                     </select>
                 </div>
             </div>
