@@ -1,6 +1,6 @@
 <div>
     <h2 id="page-heading">
-        <span>Protocolentries</span>
+        <span>Solvent and Reagent Usage</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-protocolentry" [routerLink]="['/protocolentry/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
@@ -15,12 +15,9 @@
             <thead>
             <tr>
             <th><span>Ordernumber</span></th>
-            <th><span>Sensor</span></th>
             <th><span>Reagent</span></th>
+            <th><span>Sensor</span></th>
             <th><span>Amount</span></th>
-            <th><span>Reagentcost</span></th>
-            <th><span>Wastecost</span></th>
-
             <th></th>
             </tr>
             </thead>
@@ -28,28 +25,18 @@
             <tr *ngFor="let protocolentry of protocolentries ;trackBy: trackId">
                 <td>{{protocolentry.ordernumber}}</td>
                 <td>
-                    <div *ngIf="protocolentry.sensor">
-                        {{protocolentry.sensor?.sensorname}}
-                    </div>
-                </td>
-                <td>
                     <div *ngIf="protocolentry.reagent">
                         {{protocolentry.reagent?.reagentname}}
                     </div>
                 </td>
                 <td>
                     <div *ngIf="protocolentry.sensor">
+                        {{protocolentry.sensor?.sensorname}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolentry.sensor">
                         {{protocolentry.sensor?.amount}}
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="protocolentry.reagent">
-                        {{protocolentry.reagent?.unitprice}}
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="protocolentry.reagent">
-                        {{protocolentry.reagent?.wasterunitprice}}
                     </div>
                 </td>
                 <td class="text-right">

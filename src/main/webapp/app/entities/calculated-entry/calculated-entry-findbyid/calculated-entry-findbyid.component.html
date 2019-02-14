@@ -24,7 +24,7 @@
                         <dd>
                             <span>{{calculated.pi}}</span>
                         </dd>
-                        <dt><span>Netcharge</span></dt>
+                        <dt><span>Net Charge</span></dt>
                         <dd>
                             <span>{{calculated.netcharge}}</span>
                         </dd>
@@ -37,7 +37,7 @@
                         <dd>
                             <span>{{calculated.solubility}}</span>
                         </dd>
-                        <dt><span>Weightgain</span></dt>
+                        <dt><span>Weight Gain</span></dt>
                         <dd>
                             <span>{{calculated.weightgain}}</span>
                         </dd>                
@@ -45,22 +45,22 @@
                         <div *ngIf="hasprotocol">
                                 <dt><span>Total Cost</span></dt>
                                 <dd>
-                                    <span>{{calculated.costresin + calculated.costaa + calculated.costwaste}}</span>
+                                    <span>{{totalcost}}</span>
                                 </dd>
-                                <dt><span>Startresin</span></dt>
+                                <dt><span>Start Resin</span></dt>
                                 <dd>
                                     <span>{{calculated.startresin}}</span>
                                 </dd>
-                                <dt><span>Costresin</span></dt>
+                                <dt><span>Cost Resin</span></dt>
                                 <dd>
                                     <span>{{calculated.costresin}}</span>
                                 </dd>
         
-                                <dt><span>Totalweight</span></dt>
+                                <dt><span>Total Weight</span></dt>
                                 <dd>
                                     <span>{{calculated.totalweight}}</span>
                                 </dd>
-                                <dt><span>Costaa</span></dt>
+                                <dt><span>Cost AA</span></dt>
                                 <dd>
                                     <span>{{calculated.costaa}}</span>
                                 </dd>
@@ -95,8 +95,8 @@
             <th><span>Aa</span></th>
             <th><span>Sc</span></th>
             <th><span>Dc</span></th>
-            <th><span>EachwithprotectionCost</span></th>
-            <th><span>EachwithoutprotectionCost</span></th>
+            <th><span>AA MW Weight</span></th>
+            <th><span>AA Weight</span></th>
             <th></th>
             </tr>
             </thead>
@@ -110,12 +110,12 @@
                 <td>{{calculatedEntry.currentresinweight}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <!-- <button type="submit"
+                        <button type="submit"
                                 [routerLink]="['/calculated-entry', calculatedEntry.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
-                        </button> -->
+                        </button>
                     </div>
                 </td>
             </tr>

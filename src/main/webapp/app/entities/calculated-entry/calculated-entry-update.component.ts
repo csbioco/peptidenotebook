@@ -9,6 +9,8 @@ import { CalculatedEntryService } from './calculated-entry.service';
 import { ICalculated } from 'app/shared/model/calculated.model';
 import { CalculatedService } from 'app/entities/calculated';
 
+import { IProtocol } from 'app/shared/model/protocol.model';
+import { ProtocolService } from '../protocol/protocol.service';
 @Component({
     selector: 'jhi-calculated-entry-update',
     templateUrl: './calculated-entry-update.component.html'
@@ -16,10 +18,12 @@ import { CalculatedService } from 'app/entities/calculated';
 export class CalculatedEntryUpdateComponent implements OnInit {
     calculatedEntry: ICalculatedEntry;
     isSaving: boolean;
+    protocols: IProtocol[];
 
     calculateds: ICalculated[];
 
     constructor(
+        protected protocolService: ProtocolService,
         protected jhiAlertService: JhiAlertService,
         protected calculatedEntryService: CalculatedEntryService,
         protected calculatedService: CalculatedService,
@@ -38,6 +42,19 @@ export class CalculatedEntryUpdateComponent implements OnInit {
                 map((response: HttpResponse<ICalculated[]>) => response.body)
             )
             .subscribe((res: ICalculated[]) => (this.calculateds = res), (res: HttpErrorResponse) => this.onError(res.message));
+
+        this.protocolService
+            .query()
+            .pipe(
+                filter((res: HttpResponse<IProtocol[]>) => res.ok),
+                map((res: HttpResponse<IProtocol[]>) => res.body)
+            )
+            .subscribe(
+                (res: IProtocol[]) => {
+                    this.protocols = res;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     previousState() {

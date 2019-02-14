@@ -22,6 +22,7 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
     protocolret: Protocolret[];
     chart = [];
     hasprotocol: boolean;
+    totalcost: number;
     constructor(
         protected calculatedEntryService: CalculatedEntryService,
         protected jhiAlertService: JhiAlertService,
@@ -37,7 +38,7 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
                 this.protocolret = res.body.protocolret;
                 this.calculated = this.calculatedEntries[this.calculatedEntries.length - 1].calculated;
                 this.hasprotocol = this.calculated.protocolname == null || this.calculated.protocolname.length == 0 ? false : true;
-                console.log(this.hasprotocol);
+                this.totalcost = +Number(this.calculated.costresin + this.calculated.costaa + this.calculated.costwaste).toFixed(2);
                 const seq = [];
                 const difficulties = [];
                 this.calculatedEntries
