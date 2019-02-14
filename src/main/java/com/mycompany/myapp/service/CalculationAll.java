@@ -206,7 +206,7 @@ public class CalculationAll {
         calculatedata.setNums(nums);
         calculatedata.setStartresin(startresin);
         calculatedata.setCostresin(Math.round(startresin * calculatedata.getResinunitprice() * 100.0) / 100.0);
-        calculatedata.setWeightgain(Math.round(calculatedata.getScale() * entry.get(entry.size() - 1).getMwwithprotection() / 1000 * 100.0) / 100.0);
+        calculatedata.setWeightgain(Math.round(calculatedata.getScale() * (entry.get(entry.size() - 1).getMwwithprotection() - entry.size()*240.26)  / 1000 * 100.0 )/ 100.0);
         calculatedata.setTotalweight(Math.round((calculatedata.getWeightgain() + startresin) * 100.0) / 100.0);
         calculatedata.setCostaa(Math.round(costaa * 100.0) / 100.0);
         calculatedata.setSumeachaaweight(Math.round(sumeachaaweight * 100.0) / 100.0); 

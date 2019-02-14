@@ -37,44 +37,43 @@
                         <dd>
                             <span>{{calculated.solubility}}</span>
                         </dd>
-                        <dt><span>Weight Gain</span></dt>
+                        <dt><span>Scale</span></dt>
                         <dd>
-                            <span>{{calculated.weightgain}}</span>
-                        </dd>                
-
-                        <div *ngIf="hasprotocol">
-                                <dt><span>Total Cost</span></dt>
+                            <span>{{calculated.scale}}</span>
+                        </dd>
+                        <dt><span>Substitude</span></dt>
+                        <dd>
+                            <span>{{calculated.substitude}}</span>
+                        </dd>               
+                        <dt><span>Start Resin</span></dt>
+                        <dd>
+                            <span>{{calculated.startresin}}</span>
+                        </dd>
+                        <dt><span>Resin Unit Price</span></dt>
+                        <dd>
+                            <span>{{calculated.resinunitprice}}</span>
+                        </dd>
+     
+                                <dt><span>Weight Gain</span></dt>
                                 <dd>
-                                    <span>{{totalcost}}</span>
-                                </dd>
-                                <dt><span>Start Resin</span></dt>
+                                    <span>{{calculated.weightgain}}</span>
+                                </dd> 
+                                <dt><span>Final Resin Weight</span></dt>
                                 <dd>
-                                    <span>{{calculated.startresin}}</span>
+                                    <span>{{calculated.totalweight}}</span>
                                 </dd>
+                                <div *ngIf="hasprotocol">
                                 <dt><span>Cost Resin</span></dt>
                                 <dd>
                                     <span>{{calculated.costresin}}</span>
-                                </dd>
-        
-                                <dt><span>Total Weight</span></dt>
-                                <dd>
-                                    <span>{{calculated.totalweight}}</span>
                                 </dd>
                                 <dt><span>Cost AA</span></dt>
                                 <dd>
                                     <span>{{calculated.costaa}}</span>
                                 </dd>
-                                <dt><span>Sumeachaaweight</span></dt>
+                                <dt><span>Total Cost</span></dt>
                                 <dd>
-                                    <span>{{calculated.sumeachaaweight}}</span>
-                                </dd>
-                                <dt><span>Resinunitprice</span></dt>
-                                <dd>
-                                    <span>{{calculated.resinunitprice}}</span>
-                                </dd>
-                                <dt><span>Substitude</span></dt>
-                                <dd>
-                                    <span>{{calculated.substitude}}</span>
+                                    <span>{{totalcost}}</span>
                                 </dd>
                         </div>
                         
@@ -95,7 +94,7 @@
             <th><span>Aa</span></th>
             <th><span>Sc</span></th>
             <th><span>Dc</span></th>
-            <th><span>AA MW Weight</span></th>
+            <th><span>AA MW</span></th>
             <th><span>AA Weight</span></th>
             <th></th>
             </tr>
