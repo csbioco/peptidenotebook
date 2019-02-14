@@ -90,4 +90,7 @@ export class CalculatedEntryUpdateComponent implements OnInit {
     trackCalculatedById(index: number, item: ICalculated) {
         return item.id;
     }
+    trackProtocolById(index: number, item: IProtocol) {
+        return item.protocolname;
+    }
 }
