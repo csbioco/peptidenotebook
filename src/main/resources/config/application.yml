@@ -110,6 +110,7 @@ security:
         client:
             accessTokenUri: https://dev-143218.oktapreview.com/oauth2/default/v1/token
             userAuthorizationUri: https://dev-143218.oktapreview.com/oauth2/default/v1/authorize
+            
             # web
             clientId: 0oahog3fvyke6F3iU0h7
             clientSecret: 19XxvPZZP2K9wybDQwVhpJcTE3yuCGlQ27NumFu3
