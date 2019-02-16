@@ -166,10 +166,10 @@ public class CalculationAll {
             entry.get(i).setMwwithoutprotection(Math.round(mwwithoutprotection * 100.0) / 100.0);
             double tmpeachaaweight = (entry.get(i).getSc() + entry.get(i).getDc()) * entry.get(i).getScale() * positionMap.get(entry.get(i).getAa()).getMwwithprotection();
             sumeachaaweight += tmpeachaaweight;            
-            entry.get(i).setEachaaweight(Math.round(tmpeachaaweight * 100.0) / 100.0);
+            entry.get(i).setEachaaweight(positionMap.get(entry.get(i).getAa()).getMwwithprotection() * 100.0 / 100.0);
 
             // use this currentresinweight to store aa cost with protection 
-            double currentaaweight = (entry.get(i).getSc() + entry.get(i).getDc()) * entry.get(i).getScale() * positionMap.get(entry.get(i).getAa()).getMwwithoutprotection();
+            double currentaaweight = (entry.get(i).getSc() + entry.get(i).getDc()) * entry.get(i).getScale() * positionMap.get(entry.get(i).getAa()).getMwwithprotection();
             
             entry.get(i).setCurrentresinweight(Math.round(currentaaweight * 100.0) / 100.0);            
             
