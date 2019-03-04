@@ -94,7 +94,8 @@ public class CalculatedResource {
     @GetMapping("/calculateds")
     public List<Calculated> getAllCalculateds() {
         log.debug("REST request to get all Calculateds");
-        return calculatedRepository.findAll();
+        // userService.getUserWithAuthorities().get()
+        return calculatedRepository.findByUserIsCurrentUser();
     }
 
     /**

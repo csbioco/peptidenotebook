@@ -87,8 +87,8 @@ public class ProtocolResource {
      */
     @GetMapping("/protocols")
     public List<Protocol> getAllProtocols() {
-        log.debug("REST request to get all Protocols");
-        return protocolRepository.findAll();
+        log.debug("REST request to get current users' all Protocols");
+        return protocolRepository.findByUserIsCurrentUser();
     }
 
     /**

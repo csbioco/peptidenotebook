@@ -85,7 +85,7 @@ public class SensorResource {
     @GetMapping("/sensors")
     public List<Sensor> getAllSensors() {
         log.debug("REST request to get all Sensors");
-        return sensorRepository.findAll();
+        return sensorRepository.findByUserIsCurrentUser();
     }
 
     /**

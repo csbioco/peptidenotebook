@@ -112,12 +112,12 @@ security:
             userAuthorizationUri: https://dev-143218.oktapreview.com/oauth2/default/v1/authorize
             
             # web
-            # clientId: 0oahog3fvyke6F3iU0h7
-            # clientSecret: 19XxvPZZP2K9wybDQwVhpJcTE3yuCGlQ27NumFu3
+            clientId: 0oahog3fvyke6F3iU0h7
+            clientSecret: 19XxvPZZP2K9wybDQwVhpJcTE3yuCGlQ27NumFu3
 
             # #local
-            clientId: 0oaiigtnp6QsDgpky0h7
-            clientSecret: 6LFx19iRmd8L1tumpziIUFYroNjV5RMz7B9FwYC4
+            # clientId: 0oaiigtnp6QsDgpky0h7
+            # clientSecret: 6LFx19iRmd8L1tumpziIUFYroNjV5RMz7B9FwYC4
             clientAuthenticationScheme: form
             scope: openid profile email
         resource:

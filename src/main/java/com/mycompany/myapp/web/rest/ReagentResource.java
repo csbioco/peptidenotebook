@@ -86,7 +86,7 @@ public class ReagentResource {
     @GetMapping("/reagents")
     public List<Reagent> getAllReagents() {
         log.debug("REST request to get all Reagents");
-        return reagentRepository.findAll();
+        return reagentRepository.findByUserIsCurrentUser();
     }
 
     /**

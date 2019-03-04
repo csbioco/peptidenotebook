@@ -47,19 +47,20 @@
                 </a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="calculated" (click)="collapseNavbar()">
+                <a class="nav-link" routerLink="calculated/new/" (click)="collapseNavbar()">
                     <span>
-                        <span>Calculation History</span>
+                        <span>Sequence</span>
                     </span>
                 </a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="calculated/new/" (click)="collapseNavbar()">
+                <a class="nav-link" routerLink="calculated" (click)="collapseNavbar()">
                     <span>
-                        <span>Calculation</span>
+                        <span>Sequence History</span>
                     </span>
                 </a>
             </li>
+
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
