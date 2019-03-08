@@ -257,9 +257,13 @@ public class CalculationAll {
         //protocolmap  HashMap<String, Double[]>
         List<Protocolret> res_pro = new ArrayList<>();
         Double totolcost = 0.0;
+        // Math.round(mwwithprotection * 100.0) / 100.0
         for (String e : protocolmap.keySet()) {
-            res_pro.add(new Protocolret(e, protocolmap.get(e)[0], protocolmap.get(e)[1], protocolmap.get(e)[2]));
-            totolcost += protocolmap.get(e)[1] + protocolmap.get(e)[2];
+            res_pro.add(new Protocolret(e, 
+                                        Math.round(protocolmap.get(e)[0] * 100.0) / 100.0, 
+                                        Math.round(protocolmap.get(e)[1] * 100.0) / 100.0, 
+                                        Math.round(protocolmap.get(e)[2] * 100.0) / 100.0));
+            // totolcost += protocolmap.get(e)[1] + protocolmap.get(e)[2];
         }
         protocolmap.clear();
         return new Ret(res_pro, res_cal);

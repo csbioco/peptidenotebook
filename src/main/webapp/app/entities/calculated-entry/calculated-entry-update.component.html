@@ -114,8 +114,8 @@
                 <!-- protocols -->
                 <div class="form-group">
                         <label class="form-control-label" for="field_protocol">Protocol</label>
-                        <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="calculatedEntry.protocolname" >
-                            <option [ngValue]="protocolOption.id" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
+                        <select class="form-control" id="field_protocol" name="protocol" [(ngModel)]="calculatedEntry.protocolname">
+                            <option [ngValue]="protocolOption.id == calculatedEntry.protocolname ? calculatedEntry.protocolname : protocolOption.id" *ngFor="let protocolOption of protocols; trackBy: trackProtocolById">{{protocolOption.protocolname}}</option>
                         </select>
                 </div>
 
