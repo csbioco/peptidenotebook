@@ -23,6 +23,9 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
     chart = [];
     hasprotocol: boolean;
     totalcost: number;
+    pro_tot_amount: number;
+    pro_reagent_cost: number;
+    pro_waste_cost: number;
     constructor(
         protected calculatedEntryService: CalculatedEntryService,
         protected jhiAlertService: JhiAlertService,
@@ -36,6 +39,18 @@ export class CalculatedEntryFindbyidComponent implements OnInit, OnDestroy {
             (res: HttpResponse<any>) => {
                 this.calculatedEntries = res.body.protocolentry;
                 this.protocolret = res.body.protocolret;
+
+                this.pro_tot_amount = 0;
+                this.pro_reagent_cost = 0;
+                this.pro_waste_cost = 0;
+                if (this.protocolret != null && this.protocolret.length > 0) {
+                    for (let p of this.protocolret) {
+                        this.pro_tot_amount += p.amount;
+                        this.pro_reagent_cost += p.reagentcost;
+                        this.pro_waste_cost += p.wastecost;
+                    }
+                }
+
                 this.calculated = this.calculatedEntries[this.calculatedEntries.length - 1].calculated;
                 this.hasprotocol = this.calculated.protocolname == null || this.calculated.protocolname.length == 0 ? false : true;
                 this.totalcost = +Number(this.calculated.costresin + this.calculated.costaa + this.calculated.costwaste).toFixed(2);
