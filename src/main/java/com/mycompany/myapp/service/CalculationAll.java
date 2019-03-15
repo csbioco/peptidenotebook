@@ -254,6 +254,9 @@ public class CalculationAll {
     public Ret returncal(Long id) {
         calculateresult(id);
         List<CalculatedEntry> res_cal = calculatedEntryRepository.findByCalculateId(id);
+        Collections.sort(res_cal, (CalculatedEntry r1, CalculatedEntry r2) -> {
+            return Integer.compare(r2.getSequencenumber(), r1.getSequencenumber());
+        });
         //protocolmap  HashMap<String, Double[]>
         List<Protocolret> res_pro = new ArrayList<>();
         Double totolcost = 0.0;
